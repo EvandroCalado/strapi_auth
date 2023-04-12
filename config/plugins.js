@@ -12,12 +12,28 @@ module.exports = ({ env }) => ({
         uploadStream: {},
         delete: {},
       },
-      jwt: {
-        expiresIn: "7d",
-      },
     },
   },
   ckeditor: {
     enabled: true,
+  },
+  email: {
+    config: {
+      provider: "strapi-provider-email-smtp",
+      providerOptions: {
+        host: env("SMTP_HOST"),
+        port: env("SMTP_PORT"),
+        secure: true,
+        username: env("SMTP_USERNAME"),
+        password: env("SMTP_PASSWORD"),
+        rejectUnauthorized: true,
+        requireTLS: true,
+        connectionTimeout: 1,
+      },
+    },
+    settings: {
+      defaultFrom: env("SMTP_DEFAULT_FROM"),
+      defaultReplyTo: env("SMTP_DEFAULT_REPLAY_TO"),
+    },
   },
 });

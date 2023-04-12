@@ -5,5 +5,4 @@ module.exports = (policyContext, config, { strapi }) => {
   // }
 
   // return false; // If you return nothing, Strapi considers you didn't want to block the request and will let it pass
-  // console.log("LOCAL-POLICY");
 };

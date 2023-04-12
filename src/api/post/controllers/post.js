@@ -18,9 +18,9 @@ module.exports = createCoreController("api::post.post", ({ strapi }) => ({
   },
 
   async find(ctx) {
-    const user = ctx.state.user;
+    const { id } = ctx.state.user;
 
-    ctx.query.filters = { ...ctx.query.filters, user: user.id };
+    ctx.query.filters = { ...ctx.query.filters, user: id };
 
     const response = await super.find(ctx);
 

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = {
   /**
@@ -7,7 +7,17 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    const extensionService = strapi.plugin("graphql").service("extension");
+
+    extensionService.use({
+      resolversConfig: {
+        "Query.posts": {
+          policies: ["global::is-logged-in"],
+        },
+      },
+    });
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
